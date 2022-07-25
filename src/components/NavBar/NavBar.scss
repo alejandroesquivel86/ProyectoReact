@@ -3,6 +3,13 @@
     width: 100%;    
     display: flex;
     justify-content: space-between;    
+    box-shadow: rgb(0 0 0 / 20%) 0px 2px 4px -1px, rgb(0 0 0 / 14%) 0px 4px 5px 0px, rgb(0 0 0 / 12%) 0px 1px 10px 0px;
+    box-sizing: border-box;  
+    img{
+        margin-left: 20px;
+        margin-bottom: 20px;
+        margin-top: 20px;        
+    }
     ul {
         list-style: none;
         display: flex;
@@ -10,7 +17,7 @@
         li {
             margin: 0px 10px;
             button {
-                font-weight: 600;
+                font-weight: 400;
                 background: none;
                 border: none;
                 font-size: 18px;
@@ -26,6 +33,7 @@
     .cart-widget{
         display: flex;
         align-items: center;
+        margin-right: 20px;
 
     }
 }
