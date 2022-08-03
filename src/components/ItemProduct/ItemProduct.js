@@ -1,17 +1,22 @@
+import * as React from 'react'
 import './ItemProduct.scss'
 import ItemCount from './ItemCount'
-import * as React from 'react';
-import Button from '@mui/material/Button';
+
+
 
 const ItemProduct = ({data}) => {
     const {title, image, price, stock} = data
+    
+    const onAdd = (contador) => {
+        alert(`Agregaste ${contador} productos`);
+      };
+
     return(
         <div className="item-product">
             <img id="imgProducto" src={`./assets/${image}`} alt="" />
                 <p>{title}</p>
                 <span>$ {price}</span>
-                <ItemCount stock={stock} initial={1} />
-                <Button variant="contained">Agregar</Button>                
+                <ItemCount onAdd={onAdd} initial={1} stock={stock}/>
                 <span>stock: {stock}</span>
         </div>
     )

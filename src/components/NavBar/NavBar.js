@@ -5,7 +5,7 @@ import CartWidget from './CartWidget';
 const NavBar = () => {
     return(
         <div className="navbar-primary">
-            <img src="/assets/logo.png" alt="logo"/>
+            <img src="/assets/CrossFit.jpg" alt="logo"/>
             <ul>
                 <li><button>Home</button></li>
                 <li><button>Productos</button></li>

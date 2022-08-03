@@ -1,31 +1,42 @@
 import {useState} from 'react'
-import Button from '@mui/material/Button';
+import Button from '@mui/material/Button'
 
+const ItemCount = ({ onAdd, initial, stock }) => {
 
-const ItemCount = ({stock, initial}) => {
-    
-    const [contador, setContador] = useState(initial)    
-    const addNumber = () =>{
-        if (contador< stock){
-        setContador(contador + 1)
-        }
-    }
+  const [contador, setContador] = useState(initial);
 
-    const removeNumber = () =>{
-        if (contador>= 1){
-            setContador(contador - 1)
-            }
-    }
+  const addProduct = (num) => {
+    setContador(contador + num);
+  };
 
-    return(
-        <div className='countProd'>        
-        
-        <Button onClick={removeNumber}>-</Button>
-        <p>{contador}</p>
-        <Button onClick={addNumber}>+</Button>
-      
+  console.log(initial, stock)
+  return (
+    <>
+    <div className="countProd">
+    <Button  onClick={() => addProduct(-1)}
+            disabled={contador === initial}
+        >
+        -
+    </Button>
+    <span>{contador}</span>
+    <Button onClick={() => addProduct(+1)}
+            disabled={contador === stock}
+        >
+        +
+    </Button>
     </div>
-    )
-}
+    <div>
+    <Button className="btnAdd" variant="contained"
+        onClick={() => {
+        onAdd(contador);
+        }}
+        disabled={stock === 0 ? true : null}
+      >
+        Agregar
+    </Button>  
+    </div>
+    </>
+  );
+};
 
-export default ItemCount
+export default ItemCount;

@@ -1,15 +1,23 @@
 import './App.scss';
 import NavBar from './components/NavBar/NavBar';
-import ItemListContainer from './components/ItemListContainer/ItemListContainer';
+
+import {BrowserRouter, Routes, Route} from 'react-router-dom';
+import Home from './components/Pages/Home';
+import Contact from './components/Pages/Contact';
+import Product from './components/Pages/Products';
 
 function App() {
     return (
-    <div className="container">
+      <BrowserRouter >
         <NavBar/>
-          <div className='main-container'>                   
-                  <ItemListContainer section= "Servicios a Contratar"/>                             
-          </div>
-    </div>
+          <Routes>            
+              <Route path='/' element={<Home />}/>
+              <Route path='/contacto' element={<Contact />}/>
+              <Route path='/producto' element={<Product />}/>
+              <Route path=''/>            
+          </Routes>
+
+      </BrowserRouter>
   );
 }
 
