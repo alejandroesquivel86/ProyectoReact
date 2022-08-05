@@ -2,16 +2,27 @@ import {useState, useEffect} from "react"
 import './ItemListContainer.scss'
 import products from "../util/productmock"
 import ItemList from "../ItemProduct/ItemList"
+import {useParams} from 'react-router-dom'
 
 
 function ItemListContainer({ section }) {
 
     const [listProducts, setListProducts] = useState([]);    
+    const { category } = useParams();
+    const filterbycat = products.filter( (product) => product.category === category);
+   
 
     useEffect(() => {
-        const getProducts = new Promise((resolve, reject) => {
-            setTimeout(() => {
-                resolve(products);
+                const getProducts = new Promise((resolve, reject) => {
+            setTimeout(() => {    
+                if (category === "zapatilla" || category === "accesorio"){
+                    resolve(filterbycat);
+                }
+
+                else{
+                    resolve(products);
+                }
+                
             }, 2000);
         });
         getProducts
@@ -24,7 +35,7 @@ function ItemListContainer({ section }) {
             .finally(() => {
                 console.log("termino");
             });
-    }, []);
+    }, [category]);
 
     return (
         <div>

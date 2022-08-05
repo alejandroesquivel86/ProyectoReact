@@ -1,6 +1,7 @@
 const products=[
     {
         id: 1,
+        category:"zapatilla",
         title:"Nano X2",
         price: 46000,
         image: 'Nano-X2-Detail.jpg',
@@ -8,6 +9,7 @@ const products=[
         },
     {
         id: 2,
+        category:"zapatilla",
         title:"Nano X1",
         price: 35000,
         image: 'Nano-X1.webp',
@@ -15,6 +17,7 @@ const products=[
         },
         {
         id: 3,
+        category:"accesorio",
         title:"Callera RX 236",
         price: 3500,
         image: 'calleras.webp',
@@ -22,6 +25,7 @@ const products=[
         },
         {
         id: 4,
+        category:"accesorio",
         title:"Muñequera Rogue",
         price: 5000,
         image: 'muñequerasrogue.webp',

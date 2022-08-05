@@ -1,17 +1,19 @@
 import * as React from 'react'
 import './ItemProduct.scss'
 import ItemCount from './ItemCount'
+import {Link} from 'react-router-dom'
 
 
 
 const ItemProduct = ({data}) => {
-    const {title, image, price, stock} = data
+    const {title, image, price, stock,id} = data
     
     const onAdd = (contador) => {
         alert(`Agregaste ${contador} productos`);
       };
 
     return(
+        <Link to={`/producto/${id}`}>
         <div className="item-product">
             <img id="imgProducto" src={`./assets/${image}`} alt="" />
                 <p>{title}</p>
@@ -19,6 +21,7 @@ const ItemProduct = ({data}) => {
                 <ItemCount onAdd={onAdd} initial={1} stock={stock}/>
                 <span>stock: {stock}</span>
         </div>
+        </Link>
     )
 }
 

@@ -3,9 +3,6 @@ import './ItemProductDetail.scss'
 import StarIcon from '@mui/icons-material/Star';
 import ItemCount from '../ItemProduct/ItemCount';
 
-
-
-
 const ItemProductDetail = ({data}) => {
 const {title, image, price, stock, detailTitle, detailDescription, categoria} = data
 const onAdd = (contador) => {
@@ -16,7 +13,7 @@ const onAdd = (contador) => {
     <>
         <div className="itemProductDetail">            
             <div className='imgContainer'>
-                <img id="imgProductoDetail" src={`./assets/${image}`} alt="" />
+                <img id="imgProductoDetail" src={`../assets/${image}`} alt="" />
             </div>
             <div className='sideBar'>
                 <div className='detail'>
@@ -40,8 +37,7 @@ const onAdd = (contador) => {
                     <h3>{detailDescription}</h3>
                 </div>   
             </div>
-        </div>
-     
+        </div>     
     </>
     )
 }

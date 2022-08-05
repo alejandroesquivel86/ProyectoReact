@@ -4,7 +4,8 @@ import NavBar from './components/NavBar/NavBar';
 import {BrowserRouter, Routes, Route} from 'react-router-dom';
 import Home from './components/Pages/Home';
 import Contact from './components/Pages/Contact';
-import Product from './components/Pages/Products';
+import Detail from './components/Pages/Detail';
+import Category from './components/Pages/Categorys';
 
 function App() {
     return (
@@ -13,8 +14,8 @@ function App() {
           <Routes>            
               <Route path='/' element={<Home />}/>
               <Route path='/contacto' element={<Contact />}/>
-              <Route path='/producto' element={<Product />}/>
-              <Route path=''/>            
+              <Route path='/:category/' element={<Category />}/>              
+              <Route path='/:category/:id' element={<Detail />}/>   
           </Routes>
 
       </BrowserRouter>

@@ -1,20 +1,22 @@
-import {useState, useEffect} from "react"
 import './ItemDetailContainer.scss'
-import productdetail from "../util/productdetailmock"
 import ItemDetail from "../ItemDetail/ItemDetail"
+import productdetail from "../util/productdetailmock"
+import {useState, useEffect} from "react"
+import {useParams} from 'react-router-dom'
 
 
 function ItemDetailContainer({ section }) {
-
+    
+    const { id } = useParams();       
     const [detailProducts, setDetailProducts] = useState([]);    
 
-    useEffect(() => {
+    useEffect(() => {              
+        const filterbyid = productdetail.filter( (product) => product.id === Number(id))
         const getProducts = new Promise((resolve, reject) => {
-            setTimeout(() => {
-                console.log(productdetail)
-                resolve(productdetail);
+            setTimeout(() => {                   
+                resolve(filterbyid);
             }, 2000);
-        });
+        }); 
         getProducts
             .then((res) => {
                 setDetailProducts(res);
