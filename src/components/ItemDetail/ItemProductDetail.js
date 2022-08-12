@@ -33,7 +33,7 @@ const ItemProductDetail = ({data}) => {
                     <span className='price'>$ {price}</span>            
                     <span className='stock'>stock: {stock}</span>                    
                     { quantitySelected > 0 ? <Link to='/cart' ><Button className="btnAdd" variant="contained"> TERMINAR COMPRA</Button></Link>
-                    :<ItemCount initial={1} stock={stock} setQuantitySelected={setQuantitySelected}/>
+                    :<ItemCount initial={1} stock={stock} setQuantitySelected={setQuantitySelected} productData={data}/>
                     }
                 </div>
                 <div className='ditailDescription'>

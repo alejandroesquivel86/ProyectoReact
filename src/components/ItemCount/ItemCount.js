@@ -1,21 +1,23 @@
-import {useState} from 'react'
-import Button from '@mui/material/Button'
+import {useState, useContext } from 'react';
+import { CartContext } from '../../context/CartContext';
+import Button from '@mui/material/Button';
 
-const ItemCount = ({ initial, stock, setQuantitySelected}) => {
-
-  const [contador, setContador] = useState(initial);
+const ItemCount = ({ initial, stock, setQuantitySelected, productData}) => {
+  const { addProductToCart } = useContext(CartContext)
+  const [ contador, setContador ] = useState(initial);
 
   const addProduct = (num) => {
     setContador(contador + num);
   };
 
   const onAdd = () => {
-    setQuantitySelected(contador);
+    console.log("Click Agregar: ", productData);     
+    addProductToCart (productData)
+    setQuantitySelected (contador)
   };
   
   return (
-  <>
-    <div className="countProd">
+  <div className="countProd">
     <Button  onClick={() => addProduct(-1)}
             disabled={contador === initial}>
           -
@@ -28,11 +30,9 @@ const ItemCount = ({ initial, stock, setQuantitySelected}) => {
     <Button className="btnAdd" variant="contained" 
         onClick={onAdd}
         disabled={stock === 0 ? true : null}>
-        Agregar
-    </Button>
-        
-    </div>
-  </>
+        AGREGAR AL CARRITO
+    </Button>        
+    </div>  
   );
 };
 

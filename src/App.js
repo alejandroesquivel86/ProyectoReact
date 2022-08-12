@@ -7,20 +7,22 @@ import Contact from './components/Pages/Contact';
 import Detail from './components/Pages/Detail';
 import Category from './components/Pages/Categorys';
 import Checkout from './components/Pages/Checkout';
+import CartProvider from './context/CartContext';
 
 function App() {
     return (
-      <BrowserRouter >
-        <NavBar/>
-          <Routes>            
-              <Route path='/' element={<Home />}/>
-              <Route path='/contacto' element={<Contact />}/>
-              <Route path='/:category/' element={<Category />}/>              
-              <Route path='/:category/:id' element={<Detail />}/>   
-              <Route path='/cart' element={<Checkout />}/>
-          </Routes>
-
-      </BrowserRouter>
+      <CartProvider >
+        <BrowserRouter >
+          <NavBar/>
+            <Routes>            
+                <Route path='/' element={<Home />}/>
+                <Route path='/contacto' element={<Contact />}/>
+                <Route path='/:category/' element={<Category />}/>              
+                <Route path='/:category/:id' element={<Detail />}/>   
+                <Route path='/cart' element={<Checkout />}/>
+            </Routes>
+        </BrowserRouter>
+      </CartProvider>
   );
 }
 
