@@ -18,7 +18,7 @@ const ItemProduct = ({data}) => {
                 <p>{title}</p>
                 <span>$ {price}</span>    
                 {console.log("quantitySelected: ", quantitySelected)}            
-                <ItemCount initial={1} stock={stock} setQuantitySelected={setQuantitySelected} productData={data}/>
+                <ItemCount initial={1} stock={stock} setQuantitySelected={setQuantitySelected} productData={data} />
                 <span>stock: {stock}</span>
         </div>
         </Link>

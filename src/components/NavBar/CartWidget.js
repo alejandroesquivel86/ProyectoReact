@@ -1,16 +1,16 @@
-import {useState, useContext} from 'react'
+import {useState, useContext } from 'react'
 import ShoppingCartIconOutlined from '@mui/icons-material/ShoppingCartOutlined';
 import Menu from '@mui/material/Menu';
+import { Button } from '@mui/material';
 // import MenuItem from '@mui/material/MenuItem';
 import DeleteIcon from '@mui/icons-material/Delete';
 import { CartContext } from '../../context/CartContext';
 import './NavBar.scss';
 
 
-
 const CartWidget = () => {
     const [anchorEl, setAnchorEl] = useState(null);
-    const { cartProducts } = useContext(CartContext);
+    const { cartProducts, clear, removeProductToCart } = useContext(CartContext);
     const open = Boolean(anchorEl);
     const handleClick = (event) => {
         setAnchorEl(event.currentTarget);
@@ -19,6 +19,7 @@ const CartWidget = () => {
         setAnchorEl(null);
     };
     return(
+        
         <div className='cart-widget' >            
             <ShoppingCartIconOutlined 
                 aria-controls={open ? 'basic-menu' : undefined}
@@ -26,6 +27,7 @@ const CartWidget = () => {
                 aria-expanded={open ? 'true' : undefined}
                 onClick={handleClick}
             />
+            
             <Menu
                 id="basic-menu"
                 anchorEl={anchorEl}
@@ -33,29 +35,34 @@ const CartWidget = () => {
                 onClose={handleClose}
                 MenuListProps={{
                 'aria-labelledby': 'basic-button',
-                }}
-            >
-                        {console.log("cartProducts: ", cartProducts)}
-                        {cartProducts.map((product) => {
-                            return(
-                            
+                }}>
+                    {console.log("cartProducts: ", cartProducts)}
+                    {cartProducts.map((product) => {
+                        return(
+                        <div className='itemContainer'>
                             <div className='item-cart-product' key={product.id}>
-                                    <img src={`/assets/${product.image}`} alt="" />
-                                    <div className='cart-product__details'>
-                                        <p>{product.title}</p>                                        
-                                    </div>
-                                    <div className='cart-product__details'>
-                                        <p>{product.price}</p>
-                                    </div>
-                                    <div className='cart-product__action'>
-                                        <DeleteIcon />
-                                    </div>
-                                    <button>Borrar todo</button>
-                            </div>                                
-                            )
-                        })}
-            </Menu>
+                                <img src={`/assets/${product.image}`} alt="" />
+                                <div className='cart-product__details'>
+                                    <p>{product.title}</p>                                        
+                                </div>
+                                <div className='cart-product__details'>
+                                    <p>{product.price}</p>
+                                </div>
+                                <div className='cart-product__action'>
+                                    <DeleteIcon onClick={() => removeProductToCart(product.id)}/>
+                                </div>                                    
+                            </div> 
+                        </div>                              
+                        )
+                    })}
+                        <div className='cartTotal'>
+                            <p>Total</p>
+                            <p>$ 1.000.-</p>
+                            <Button onClick={() => clear()}>Borrar todo</Button>
+                        </div>
+            </Menu>            
         </div>
+
     )
 }
 

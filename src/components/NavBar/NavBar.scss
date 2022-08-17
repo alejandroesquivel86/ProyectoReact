@@ -39,11 +39,17 @@
         }        
     }
 }
-    .item-cart-product {        
+    .itemContainer{
         display: flex;
-        max-width: 500px;
-        border-bottom: 1px solid #ccc;
-        padding-bottom: 10px;
+        flex-direction: column;
+        .item-cart-product {        
+            display: flex;
+            flex-direction: row;
+            max-width: 500px;
+            border-bottom: 1px solid #ccc;
+            padding-bottom: 10px;
+        }
+
     }
     
     .item-cart-product img {
