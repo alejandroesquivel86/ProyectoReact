@@ -10,7 +10,8 @@ import './NavBar.scss';
 
 const CartWidget = () => {
     const [anchorEl, setAnchorEl] = useState(null);
-    const { cartProducts, clear, removeProductToCart } = useContext(CartContext);
+    const { cartProducts, clear, removeProductToCart, totalProducts } = useContext(CartContext);
+    console.log("totalProducts: ", totalProducts) 
     const open = Boolean(anchorEl);
     const handleClick = (event) => {
         setAnchorEl(event.currentTarget);
@@ -20,7 +21,8 @@ const CartWidget = () => {
     };
     return(
         
-        <div className='cart-widget' >            
+        <div className='cart-widget' >   
+            {cartProducts.length !== 0 && <p>{totalProducts}</p>}
             <ShoppingCartIconOutlined 
                 aria-controls={open ? 'basic-menu' : undefined}
                 aria-haspopup="true"
@@ -36,10 +38,8 @@ const CartWidget = () => {
                 MenuListProps={{
                 'aria-labelledby': 'basic-button',
                 }}>
-                    {console.log("cartProducts: ", cartProducts)}
                     {cartProducts.map((product) => {
                         return(
-                        <div className='itemContainer'>
                             <div className='item-cart-product' key={product.id}>
                                 <img src={`/assets/${product.image}`} alt="" />
                                 <div className='cart-product__details'>
@@ -51,13 +51,12 @@ const CartWidget = () => {
                                 <div className='cart-product__action'>
                                     <DeleteIcon onClick={() => removeProductToCart(product.id)}/>
                                 </div>                                    
-                            </div> 
-                        </div>                              
+                            </div>                         
                         )
                     })}
                         <div className='cartTotal'>
                             <p>Total</p>
-                            <p>$ 1.000.-</p>
+                            <p>{totalProducts}</p>
                             <Button onClick={() => clear()}>Borrar todo</Button>
                         </div>
             </Menu>            

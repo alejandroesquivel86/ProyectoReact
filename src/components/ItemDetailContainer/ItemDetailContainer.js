@@ -1,48 +1,45 @@
 import './ItemDetailContainer.scss'
 import ItemDetail from "../ItemDetail/ItemDetail"
-import productdetail from "../util/productdetailmock"
+// import productdetail from "../util/productdetailmock"
 import {useState, useEffect} from "react"
 import {useParams} from 'react-router-dom'
 import Modal from '../Modal/Modal'
+import db from '../../firebaseConfig'
+import {doc, getDoc} from "firebase/firestore"
 
-function ItemDetailContainer({}) {    
-    const { id } = useParams();       
+function ItemDetailContainer({}) {
     const [detailProducts, setDetailProducts] = useState([]);
     const [showModal, setShowModal] = useState(false); 
-    console.log('detailProducts: ', detailProducts)
-
-    useEffect(() => {              
-        const filterbyid = productdetail.filter( (product) => product.id === Number(id))
-        console.log('filterbyid: ', filterbyid)
-        const getProducts = new Promise((resolve, reject) => {
-            setTimeout(() => {                   
-                resolve(filterbyid);
-            }, 2000);
-        }); 
-        getProducts
+    const { id } = useParams();       
+    
+    useEffect(() => {                     
+        const getProduct = async () => {
+                const docRef = doc( db, 'productos', id)
+                const docSnapshot = await getDoc(docRef)
+                console.log("docSnapshot: ",docSnapshot)
+                let product = docSnapshot.data()
+                product.id = docSnapshot.id
+                return product
+        }
+        getProduct()
             .then((res) => {
                 setDetailProducts(res);
             })
             .catch((bug) => {
-                console.log("error capturado");
+                console.log("error capturado: ", bug);
             })
             .finally(() => {
                 console.log("detalle ok");
             });
     }, []);
 
+
     return (
-        // <div>
-        //     <h2>{section}</h2>
-        //     <div>
-        //         <ItemDetail dataProducts={detailProducts} />
-        //     </div>
-        // </div>
         <div className={`container-item-detail ${showModal ? 'overlay-black' : ''}`}>
         {showModal && (
             <Modal title="Imagen Producto" close={setShowModal}>
-                {/* <img src={`/assets/${filterbyid.image}`} alt="" /> */}
-                <img src='/assets/Nano-X1.webp' alt="" />            
+                <img src={`/assets/${detailProducts.image}`} alt="" />
+                {/* <img src='/assets/Nano-X1.webp' alt="" />             */}
             </Modal>
         )}
         <ItemDetail dataProducts={detailProducts} setShowModal={setShowModal} />

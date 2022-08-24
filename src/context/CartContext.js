@@ -4,23 +4,26 @@ const CartContext = createContext()
 
 const CartProvider = ({children}) => {
     const [cartProducts, setCartProducts] = useState([])
-    console.log("cartProducts: ", cartProducts)
+    const [totalProducts, setTotalProducts] = useState(0)
+    console.log("totalProducts: ", totalProducts)
 
     const addProductToCart = (product) => {
         const productIndex = cartProducts.findIndex((productInCart) => productInCart.id === product.id)
-        console.log("productIndex: ", productIndex)
+        setTotalProducts(totalProducts +  product.contador)
         if (productIndex === -1){
-            setCartProducts(cartProducts => [...cartProducts, product])            
+            setCartProducts(cartProducts => [...cartProducts, product])    
           }else{
             const CartCopy = [...cartProducts];
                 CartCopy[productIndex].contador = 
                     CartCopy[productIndex].contador + product.contador;
-                    console.log("CartCopy: ", CartCopy)
             setCartProducts (CartCopy);
           }
         }    
 
-    const clear = () => {setCartProducts([])}
+    const clear = () => {
+        setCartProducts([])
+        setTotalProducts(0)
+    }
 
     const removeProductToCart = (id) => {
         const newCart = cartProducts.filter((product) => product.id !== id)
@@ -33,7 +36,8 @@ const CartProvider = ({children}) => {
         setCartProducts,
         addProductToCart,
         clear,
-        removeProductToCart
+        removeProductToCart,
+        totalProducts
     }
 
     return(

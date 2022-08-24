@@ -1,7 +1,9 @@
+import Cart from "../Cart/Cart"
+
 const Checkout = () => {
     return(
         <div>
-            Pagina Cart
+            <Cart />
         </div>
 
     )

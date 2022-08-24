@@ -1,11 +1,11 @@
 import ItemProductDetail from "./ItemProductDetail"
 
 const ItemDetail = ({dataProducts, setShowModal}) => {
+    const productdetail = dataProducts
+    console.log("dataProducts: ",dataProducts)
     return(
         <>
-        {dataProducts.map((productdetail) => {
-            return <ItemProductDetail key={productdetail.id} data={productdetail} setShowModal={setShowModal}/>
-        } )}
+            <ItemProductDetail key={productdetail.id} data={productdetail} setShowModal={setShowModal}/>
         </>
     )
 }
