@@ -5,11 +5,12 @@ const CartContext = createContext()
 const CartProvider = ({children}) => {
     const [cartProducts, setCartProducts] = useState([])
     const [totalProducts, setTotalProducts] = useState(0)
-    console.log("totalProducts: ", totalProducts)
+    const [totalPrice, setTotalPrice] = useState(0)
 
     const addProductToCart = (product) => {
         const productIndex = cartProducts.findIndex((productInCart) => productInCart.id === product.id)
         setTotalProducts(totalProducts +  product.contador)
+        setTotalPrice(totalPrice + product.price*product.contador)
         if (productIndex === -1){
             setCartProducts(cartProducts => [...cartProducts, product])    
           }else{
@@ -17,6 +18,7 @@ const CartProvider = ({children}) => {
                 CartCopy[productIndex].contador = 
                     CartCopy[productIndex].contador + product.contador;
             setCartProducts (CartCopy);
+            setTotalPrice(totalPrice + product)
           }
         }    
 
@@ -37,7 +39,8 @@ const CartProvider = ({children}) => {
         addProductToCart,
         clear,
         removeProductToCart,
-        totalProducts
+        totalProducts,
+        totalPrice
     }
 
     return(

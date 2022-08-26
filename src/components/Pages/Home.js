@@ -4,7 +4,7 @@ const Home = () => {
     return(
         <div className="container">
             <section className='main-container'>
-                <ItemListContainer section= ""/>
+                <ItemListContainer section= "" filtro=""/>
             </section>
         </div>
     )

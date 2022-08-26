@@ -3,10 +3,10 @@ import './ItemListContainer.scss'
 // import products from "../util/productmock"
 import ItemList from "../ItemProduct/ItemList"
 // import {useParams} from 'react-router-dom'
-import {collection, getDocs} from "firebase/firestore"
+import { collection, getDocs, query, where } from "firebase/firestore"
 import db from "../../firebaseConfig";
 
-function ItemListContainer({ section }) {
+function ItemListContainer({ section, filtro }) {
 
     const [listProducts, setListProducts] = useState([]);    
     // const { category } = useParams();
@@ -24,8 +24,16 @@ function ItemListContainer({ section }) {
     // });
 
     const getProducts = async () => {
-        const poductCollection = collection(db, 'productos')
-        const productSnapshot = await getDocs(poductCollection)
+        const productCollection = collection(db, 'productos')
+            let prodFil
+            console.log("filtro: ",filtro)
+            if (filtro===""){
+            prodFil = productCollection
+            }else{
+            const q = query (productCollection, where("category","==", filtro))
+            prodFil=q
+            }    
+        const productSnapshot = await getDocs(prodFil)
         const productList = productSnapshot.docs.map((doc)=> {
             let product = doc.data()
             product.id = doc.id
@@ -51,7 +59,7 @@ function ItemListContainer({ section }) {
 
     return (
         <div>
-            <h2>{section}</h2>
+            <h2>{section}{filtro}</h2>
             <img id="imgCabecera" src={`../assets/Nano-X2.jpg`} alt="" />
             <div className='list-products'>                
                 <ItemList dataProducts={listProducts} />
