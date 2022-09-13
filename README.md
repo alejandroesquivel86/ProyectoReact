@@ -1,5 +1,7 @@
 ## Tienda
-Crossfit es la tienda de productos de para este deporte. Sitio en construcción falta estilos pero lo vamos a ir acomodando. 
+Crossfit es la tienda de productos de para este deporte. Sitio donde podrás adquirir diferentes productos para tu deporte. 
+
+![image](https://github.com/alejandroesquivel86/ProyectoReact/blob/master/Demostraci%C3%B3n.gif)
 
 ## Dependencias utilizadas
 
