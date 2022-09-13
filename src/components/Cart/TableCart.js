@@ -2,6 +2,7 @@ import * as React from 'react';
 import DeleteIcon from '@mui/icons-material/Delete';
 import { useContext } from "react"
 import { CartContext } from "../../context/CartContext"
+import './TableCart.scss';
 
 // function createData(name, calories, fat, carbs, protein) {
 //   return { name, calories, fat, carbs, protein };
@@ -21,18 +22,18 @@ const TableCart = () => {
       <>
           {cartProducts.map((product) => {
             return(
-                    <div key={product.id}>
-                    <img src={`/assets/${product.image}`} alt="" />
-                    <div >
-                      <p>{product.title}</p>                                        
-                      </div>
-                      <div >
-                          <p>{product.price}</p>
-                      </div>
-                      <div >
-                          <DeleteIcon onClick={() => removeProductToCart(product.id)}/>
-                      </div>                                    
-                      </div>
+                    <div className='table' key={product.id}>
+                      <img src={`/assets/${product.image}`} alt="" />
+                        <div >
+                          <p>{product.title}</p>                                        
+                        </div>
+                        <div >
+                            <p>{product.price}</p>
+                        </div>
+                        <div >
+                            <DeleteIcon onClick={() => removeProductToCart(product.id)}/>
+                        </div>                                    
+                    </div>
             )
           })}
         </>

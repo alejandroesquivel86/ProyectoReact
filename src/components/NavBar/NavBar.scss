@@ -51,10 +51,14 @@
         }
 
     }
-    
-    .item-cart-product img {
-        width: 25%;
-    }
+    .item-cart-product{
+        display: flex;
+        align-items: center;
+        padding: 5px;
+        justify-content: space-between;
+        img {
+            width: 10%;
+        }
     
     .item-cart-product img + .cart-product__details {
         width: 35%;
@@ -68,7 +72,20 @@
         display: flex;
         align-items: center;
     }
-    
+    }
+    .cartTotal{
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
+        .totalPrice{
+            display: flex;
+            flex-direction: row;
+            justify-content: space-around;
+        }
+        .btnBorrarTodo{
+            align-self: right;
+        }
+    }
     .cart-product__action {
         width: 10%;
         display: flex;
@@ -97,4 +114,13 @@
     button.btn-delete-all:hover {
         background: white;
         color: black;
+    }
+
+#basic-menu{
+        opacity: 1;
+        transform: none;
+        transition: opacity 355ms cubic-bezier(0.4, 0, 0.2, 1) 0ms, transform 236ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+        top: 16px;
+        right: 16px !important;
+        transform-origin: -16px -16px;
     }

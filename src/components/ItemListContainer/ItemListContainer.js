@@ -25,8 +25,7 @@ function ItemListContainer({ section, filtro }) {
 
     const getProducts = async () => {
         const productCollection = collection(db, 'productos')
-            let prodFil
-            console.log("filtro: ",filtro)
+            let prodFil            
             if (filtro===""){
             prodFil = productCollection
             }else{
@@ -36,8 +35,7 @@ function ItemListContainer({ section, filtro }) {
         const productSnapshot = await getDocs(prodFil)
         const productList = productSnapshot.docs.map((doc)=> {
             let product = doc.data()
-            product.id = doc.id
-            console.log ("product: ", product)
+            product.id = doc.id            
             return product             
         })
         return productList
@@ -55,7 +53,7 @@ function ItemListContainer({ section, filtro }) {
         //     .finally(() => {
         //         console.log("termino");
         //     });
-    }, []);
+    }, [filtro]);
 
     return (
         <div>

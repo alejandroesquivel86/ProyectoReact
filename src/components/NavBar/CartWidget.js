@@ -1,3 +1,7 @@
+import * as React from 'react';
+import Badge from '@mui/material/Badge';
+import { styled } from '@mui/material/styles';
+import IconButton from '@mui/material/IconButton';
 import {useState, useContext } from 'react'
 import ShoppingCartIconOutlined from '@mui/icons-material/ShoppingCartOutlined';
 import Menu from '@mui/material/Menu';
@@ -10,9 +14,17 @@ import './NavBar.scss';
 
 const CartWidget = () => {
     const [anchorEl, setAnchorEl] = useState(null);
-    const { cartProducts, clear, removeProductToCart, totalProducts } = useContext(CartContext);
-    console.log("totalProducts: ", totalProducts) 
+    const { cartProducts, clear, removeProductToCart, totalProducts, totalPrice } = useContext(CartContext);    
     const open = Boolean(anchorEl);
+    const StyledBadge = styled(Badge)(({ theme }) => ({
+        '& .MuiBadge-badge': {
+          right: -3,
+          top: 13,
+          border: `2px solid ${theme.palette.background.paper}`,
+          padding: '0 4px',
+        },
+      }));
+
     const handleClick = (event) => {
         setAnchorEl(event.currentTarget);
     };
@@ -21,14 +33,20 @@ const CartWidget = () => {
     };
     return(
         
+        
         <div className='cart-widget' >   
-            {cartProducts.length !== 0 && <p>{totalProducts}</p>}
-            <ShoppingCartIconOutlined 
-                aria-controls={open ? 'basic-menu' : undefined}
-                aria-haspopup="true"
-                aria-expanded={open ? 'true' : undefined}
-                onClick={handleClick}
-            />
+            {/* {cartProducts.length !== 0 && <p>{}</p>} */}
+            <IconButton aria-label="cart">
+                <StyledBadge badgeContent={totalProducts} color="secondary">
+                    <ShoppingCartIconOutlined 
+                    aria-controls={open ? 'basic-menu' : undefined}
+                    aria-haspopup="true"
+                    aria-expanded={open ? 'true' : undefined}
+                    onClick={handleClick}
+                    />
+                </StyledBadge>
+                </IconButton>
+            
             
             <Menu
                 id="basic-menu"
@@ -55,9 +73,11 @@ const CartWidget = () => {
                         )
                     })}
                         <div className='cartTotal'>
-                            <p>Total</p>
-                            <p>{totalProducts}</p>
-                            <Button onClick={() => clear()}>Borrar todo</Button>
+                            <div className='totalPrice'>
+                            <p>Total: $</p>
+                            <p>{totalPrice}</p>
+                            </div>
+                            <Button className= 'btnBorrarTodo' onClick={() => clear()}>Borrar todo</Button>
                         </div>
             </Menu>            
         </div>
