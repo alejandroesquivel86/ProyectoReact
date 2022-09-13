@@ -10,4 +10,4 @@ Crossfit es la tienda de productos de para este deporte. Sitio en construcción 
                           npm install @mui/material
 ## Licencia 
 
-    All rigths reserved to Agustin Sanchez
+    All rigths reserved to Alejandro Esquivel
